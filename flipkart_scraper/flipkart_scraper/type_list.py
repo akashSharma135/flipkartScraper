@@ -1,0 +1,1 @@
+product_type_list = ["shoe", "shirt", "t-shirt"]
