@@ -9,7 +9,7 @@ class FlipkartSpiderSpider(scrapy.Spider):
     page_number = 25
     product_type_list = type_list.product_type_list
     url_count = 1
-    start_urls = ['https://www.flipkart.com/search?q=shoe&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=24']
+    start_urls = [f'https://www.flipkart.com/search?q={product_type_list[0]}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=24']
     
     def get_data(response):
         product_name = response.css('._2WkVRV')
@@ -34,7 +34,8 @@ class FlipkartSpiderSpider(scrapy.Spider):
             FlipkartSpiderSpider.url_count += 1
             yield scrapy.Request(f'https://www.flipkart.com/search?q={product_type}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=24', callback=self.parse)
             
-        yield items
+        if (items['product_name'] != None):
+            yield items
 
         index = (response.url).index('&page')
         substr = response.url[:index]
