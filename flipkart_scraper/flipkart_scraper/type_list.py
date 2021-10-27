@@ -1,1 +1,1 @@
-product_type_list = ["shoe", "shirt", "t-shirt"]
+product_type_list = ["trimmer", "sweater", "t-shirt"]
